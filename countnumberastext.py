@@ -6,7 +6,9 @@ tens = ["zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy",
 
 for i in range(0, 2000001):
 
-    for count in 0,1,2:
+    for count in -1, 0,1,2:
+        if count==-1:
+            ht=int(i/1000000000)%1000
         if count==0:
             ht=int(i/1000000)%1000
         if count==1:
@@ -37,5 +39,7 @@ for i in range(0, 2000001):
             print("thousand", end=" ")
         if count==0 and ht>0:
             print("million", end=" ")
+        if count==-1 and ht>0:
+            print("billion", end=" ")
     print("")
 
