@@ -6,6 +6,9 @@ tens = ["zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy",
 
 def numbertotext(i):
     returnstring=""
+    if i<0:
+        returnstring="negative "
+        i*=-1
     for count in -1, 0,1,2:
         if count==-1:
             ht=int(i/1000000000)%1000
@@ -44,5 +47,5 @@ def numbertotext(i):
             returnstring=returnstring + "billion "
     return returnstring.strip()
 
-for i in range(0, 200000001):
+for i in range(-50, 200000001):
     print(numbertotext(i))
