@@ -18,7 +18,7 @@ char* numbertotext(int i) {
   }
   
   if(i == 0) {
-    strcat(returnstring, "zero");
+    strcat(returnstring, "zero\0");
     return returnstring;  
   }
   
@@ -64,7 +64,8 @@ char* numbertotext(int i) {
       strcat(returnstring, " ");
     }
   }
-
+  strcat(returnstring, "\0");
+  //printf("%i\n", strlen(returnstring));
   return returnstring;
 }
 
