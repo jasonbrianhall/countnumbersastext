@@ -38,7 +38,7 @@ def numbertotext(i):
             temp=int(tensdata/10)%10
             temp2=tensdata%10
             if temp2>0:
-                returnstring=returnstring + tens[temp] + " " + ones[temp2]
+                returnstring=returnstring + tens[temp] + " " + ones[temp2] + " "
             else:
                 returnstring=returnstring + tens[temp] + " "
         if count==1 and ht>0:
