@@ -3,26 +3,20 @@
 ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 tens = ["zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+bignumbers = {"decillion": 33, "nonillion": 30, "octillion": 27, "septillion": 24, "sextillion": 21, "quintillion": 18, "quadrillion": 15, "trillion": 12, "billion": 9, "million": 6, "thousand": 3, "hundreds": 0}
 
 def numbertotext(i):
     returnstring=""
     if i<0:
         returnstring="negative "
         i*=-1
-    for count in -2, -1, 0,1,2:
-        if count==-2:
-            ht=int(i/(1*10**12))%1000
-        if count==-1:
-            ht=int(i/(1*10**9))%1000
-        if count==0:
-            ht=int(i/(1*10**6))%1000
-        if count==1:
-            ht=int(i/(1*10**3))%1000
-        if count==2:
-            ht=i%1000
-            if i==0:
-                #print(ones[i], end=" ")
-                returnstring=returnstring+ones[i] + " "
+    if i==0:
+        return "zero"
+    for counter in bignumbers:
+        multiplier=bignumbers[counter]
+        ht=int(i/(1*10**multiplier))%1000
+
+    
 
         tensdata=ht%100
         hundredsdata=int(ht/100)
@@ -41,12 +35,8 @@ def numbertotext(i):
                 returnstring=returnstring + tens[temp] + " " + ones[temp2] + " "
             else:
                 returnstring=returnstring + tens[temp] + " "
-        if count==1 and ht>0:
-            returnstring=returnstring + "thousand "
-        if count==0 and ht>0:
-            returnstring=returnstring + "million "
-        if count==-1 and ht>0:
-            returnstring=returnstring + "billion "
+        if ht>0 and not counter=="hundreds":
+            returnstring=returnstring + counter + " "
     return returnstring.strip()
 
 for i in range(-50, 200000001):
