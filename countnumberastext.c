@@ -18,7 +18,8 @@ char* numbertotext(int i) {
   }
   
   if(i == 0) {
-    return "zero";
+    strcat(returnstring, "zero");
+    return returnstring;  
   }
   
   for(int c = 0; c < 12; c++) {
@@ -68,8 +69,9 @@ char* numbertotext(int i) {
 }
 
 int main() {
+  char *data;
   for(int i=-50; i<200000001; i++) {
-    data=numbertotext(i)
+    data=numbertotext(i);
     printf("%s\n", numbertotext(i));
     free(data);
   }
