@@ -9,13 +9,15 @@ def numbertotext(i):
     if i<0:
         returnstring="negative "
         i*=-1
-    for count in -1, 0,1,2:
+    for count in -2, -1, 0,1,2:
+        if count==-2:
+            ht=int(i/(1*10**12))%1000
         if count==-1:
-            ht=int(i/1000000000)%1000
+            ht=int(i/(1*10**9))%1000
         if count==0:
-            ht=int(i/1000000)%1000
+            ht=int(i/(1*10**6))%1000
         if count==1:
-            ht=int(i/1000)%1000
+            ht=int(i/(1*10**3))%1000
         if count==2:
             ht=i%1000
             if i==0:
