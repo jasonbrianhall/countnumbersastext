@@ -69,7 +69,9 @@ char* numbertotext(int i) {
 
 int main() {
   for(int i=-50; i<200000001; i++) {
+    data=numbertotext(i)
     printf("%s\n", numbertotext(i));
+    free(data)
   }
   return 0;
 }
