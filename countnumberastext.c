@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <ctype.h>
 
 char* ones[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 char* teens[] = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
@@ -8,8 +11,34 @@ char* tens[] = {"zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "s
 int bignumbers[] = {33, 30, 27, 24, 21, 18, 15, 12, 9, 6, 3, 0};
 char* bignames[] = {"decillion", "nonillion", "octillion", "septillion", "sextillion", "quintillion", "quadrillion", "trillion", "billion", "million", "thousand", "hundred"};
 
-char* numbertotext(int i) {
-  char* returnstring = malloc(1000);
+char* strip(char* str) {
+
+  if(!str) return NULL;
+  
+  int len = strlen(str);
+  
+  if(len == 0) return str;
+
+  char *end;
+
+  // Trim leading space
+  while(isspace(*str)) str++;
+  
+  if(*str == 0)  // All spaces?
+    return str;
+
+  // Trim trailing space  
+  end = str + len - 1;
+  while(end > str && isspace(*end)) end--;
+
+  // Write new null terminator  
+  *(end+1) = 0;
+
+  return str;
+}
+
+char* printnumbertotext(int i) {
+  char returnstring[1000];
   returnstring[0] = '\0';
   
   if(i < 0) {
@@ -19,7 +48,7 @@ char* numbertotext(int i) {
   
   if(i == 0) {
     strcat(returnstring, "zero\0");
-    return returnstring;  
+    //return returnstring;  
   }
   
   for(int c = 0; c < 12; c++) {
@@ -64,17 +93,14 @@ char* numbertotext(int i) {
       strcat(returnstring, " ");
     }
   }
-  strcat(returnstring, "\0");
-  //printf("%i\n", strlen(returnstring));
-  return returnstring;
+  printf("%sdoom", strip(returnstring));
 }
 
 int main() {
   char *data;
   for(int i=-50; i<200000001; i++) {
-    data=numbertotext(i);
-    printf("%s\n", numbertotext(i));
-    free(data);
+    printnumbertotext(i);
+    printf("\n");
   }
   return 0;
 }
