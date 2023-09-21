@@ -37,7 +37,7 @@ char* strip(char* str) {
   return str;
 }
 
-char* printnumbertotext(int i) {
+void* printnumbertotext(int i) {
   char returnstring[1000];
   returnstring[0] = '\0';
   
@@ -93,7 +93,7 @@ char* printnumbertotext(int i) {
       strcat(returnstring, " ");
     }
   }
-  printf("%sdoom", strip(returnstring));
+  printf("%s", strip(returnstring));
 }
 
 int main() {
